@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { Task, TaskStatus } from './task.model';
 import { v4 as uuid } from 'uuid';
 import { CreateTaskDto } from './dto/create-task.dto';
-import { measureMemory } from 'vm';
 
 @Injectable()
 export class TasksService {
@@ -28,5 +27,10 @@ export class TasksService {
 
     this.tasks.push(task);
     return task;
+  }
+
+  deteTask(id: string): {} {
+    this.tasks = this.tasks.filter((task) => task.id !== id);
+    return { message: 'Task Deleted Successfuly' };
   }
 }
